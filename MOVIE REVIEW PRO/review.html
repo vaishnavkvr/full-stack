@@ -1,0 +1,65 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+	<title>
+            review
+	</title>
+	
+	<script src =
+"https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js">
+	</script>
+	
+	<style>
+		#t {
+			height: 100px;
+			width: 300px;
+			background:white;
+			color:black;
+			text-align:justify;
+		}
+	</style>
+</head>
+
+<body style = "text-align:center;"style="background-color:black;">
+	
+	<h1 style = "color:red;" >
+		REVIEW SITE
+	</h1>
+	
+	<p id = "GFG_UP" style =
+		"font-size: 15px; font-weight: bold;">
+	</p>
+	
+	<textarea id = "t">
+		
+	</textarea>
+	
+	<br>
+	
+	<button onclick =summit>
+		summit
+	</button>
+	
+	<p id = "GFG_DOWN" style = "color:rgb(239, 4, 4);
+		font-size: 20px; font-weight: bold;">
+	</p>
+	
+	<script>
+		var el_up = document.getElementById("GFG_UP");
+		var el_down = document.getElementById("GFG_DOWN");
+		function gfg_Run() {
+			$(document).ready(function(){
+				var $text = $('#t');
+				$text.scrollTop($text[0].scrollHeight);
+			});
+			
+			el_down.innerHTML =
+				"Scroll bar is moved to bottom.";
+		}		
+	</script>
+</body>
+
+</html>
+
+    </body>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<library>
+    <book>
+        <title>Introduction to XML</title>
+        <author>vaishnav </author>
+        <publication_year>2020</publication_year>
+    </book>
+    <book>
+        <title>Data Science Essentials</title>
+        <author>Ram</author>
+        <publication_year>2022</publication_year>
+    </book>
+    <magazine>
+        <title>Nithin</title>
+        <issue_number>123</issue_number>
+        <publication_year>2023</publication_year>
+    </magazine>
+</library>

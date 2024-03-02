@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery Animate and Stop</title>
+    <!-- Include jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <style>
+        #box {
+            width: 100px;
+            height: 100px;
+            background-color: blue;
+            position: relative;
+        }
+    </style>
+</head>
+<body>
+
+<div id="box"></div>
+
+<script>
+    // Animate the box's width and stop the animation on button click
+    $(document).ready(function () {
+        // Reference to the box element
+        var $box = $("#box");
+
+        // Animate the width property
+        $box.animate({
+            width: "300px"
+        }, 3000); // 3000 milliseconds (3 seconds) duration
+
+        // Stop the animation on button click
+        $("#stopButton").on("click", function () {
+            $box.stop(); // Stop all animations
+        });
+    });
+</script>
+
+<!-- Button to stop the animation -->
+<button id="stopButton">Stop Animation</button>
+
+</body>
+</html>

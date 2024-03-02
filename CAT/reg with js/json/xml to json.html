@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XML to JSON and Display Table</title>
+</head>
+<body>
+
+<!-- Dropdown menu for selecting employee data -->
+<label for="employeeSelector">Select Employee Data:</label>
+<select id="employeeSelector" onchange="displaySelectedData()">
+    <option value="all">All Employees</option>
+    <option value="developer">Developers</option>
+    <option value="designer">Designers</option>
+</select>
+
+<!-- Table to display employee data -->
+<table id="employeeTable">
+    <!-- Table content will be dynamically filled here -->
+</table>
+
+<script>
+    // XML to JSON conversion function
+    function xmlToJson(xml) {
+        var obj = {};
+
+        xml.children().each(function () {
+            var nodeName = this.nodeName;
+
+            if (obj[nodeName] === undefined) {
+                obj[nodeName] = xmlToJson($(this));
+            } else {
+                if (obj[nodeName].push === undefined) {
+                    obj[nodeName] = [obj[nodeName]];
+                }
+                obj[nodeName].push(xmlToJson($(this)));
+            }
+        });
+
+        return obj;
+    }
+
+    // Sample XML data
+    var xmlData = `
+        <employees>
+            <employee>
+                <id>1</id>
+                <name>John Doe</name>
+                <position>Developer</position>
+            </employee>
+            <employee>
+                <id>2</id>
+                <name>Jane Smith</name>
+                <position>Designer</position>
+            </employee>
+        </employees>
+    `;
+
+    // Parse XML string to XML object
+    var xmlDoc = $.parseXML(xmlData);
+    var $xml = $(xmlDoc);
+
+    // Convert XML to JSON
+    var jsonData = xmlToJson($xml);
+
+    // Display JSON data in the console
+    console.log(JSON.stringify(jsonData, null, 2));
+
+    // Function to display selected data in the table
+    function displaySelectedData() {
+        var selectedValue = document.getElementById('employeeSelector').value;
+        var filteredData;
+
+        if (selectedValue === 'all') {
+            filteredData = jsonData.employees.employee;
+        } else {
+            filteredData = jsonData.employees.employee.filter(function (employee) {
+                return employee.position.toLowerCase() === selectedValue;
+            });
+        }
+
+        // Display data in the table
+        updateTable(filteredData);
+    }
+
+    // Function to update the HTML table
+    function updateTable(data) {
+        var table = document.getElementById('employeeTable');
+        table.innerHTML = '';
+
+        // Create table header
+        var headerRow = table.insertRow(0);
+        for (var key in data[0]) {
+            var headerCell = headerRow.insertCell();
+            headerCell.innerHTML = key;
+        }
+
+        // Create table rows and cells
+        for (var i = 0; i < data.length; i++) {
+            var row = table.insertRow(i + 1);
+            for (var key in data[i]) {
+                var cell = row.insertCell();
+                cell.innerHTML = data[i][key];
+            }
+        }
+    }
+
+    // Initial display of all employees
+    displaySelectedData();
+</script>
+
+</body>
+</html>

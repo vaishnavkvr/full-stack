@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MOVIE REVIEW SITE| BY VAISHNAVRAM.K</title>
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/rev see.css">
+
+</head>
+
+<style>
+    #t {
+        height: 100px;
+        width: 300px;
+        background:white;
+        color:black;
+        text-align:justify;
+    }
+</style>
+
+<body>
+    <div class="content">
+        <a href="/home?UserDetails=<%= encodeURIComponent(JSON.stringify(UserDetails)) %>">
+        <button style="height:5%;width:14%;">Go to Home</button>
+        </a>    
+            <ul class="team">
+                <% if (reviewlistdata) { %>
+                  <% reviewlistdata.forEach(reviewVal => { %>
+                    <% var count = 1%>
+                    <li class="member">
+                      <div class="thumb"><h1><%= reviewcounter %></h1></div>
+                      <div class="description">
+                        <h3><%= reviewVal.username %></h3>
+                        <p><%= reviewVal.reviewdata %><br></p>
+                      </div>
+                    </li><br>
+                    <% reviewcounter = reviewcounter + 1 %>
+                  <% }) %>
+                <% } %>
+            </ul>
+
+            <div>
+            <form action="/writereview?UserDetails=<%= encodeURIComponent(JSON.stringify(UserDetails)) %>&&reviewlistdata=<%= encodeURIComponent(JSON.stringify(reviewlistdata)) %>" method="post">
+                <h1 style = "color:red;">Write your review</h1>
+                
+                <p id = "GFG_UP" style =
+                    "font-size: 15px; font-weight: bold;">
+                </p>
+                
+                <textarea id = "t" name="reviewarea" required></textarea>
+                <br>
+
+                <button type="submit">submit</button>
+                              
+            </form>
+            <% if (typeof DispMsg !== 'undefined' && DispMsg !== null) { %>
+                <p style="color: white;padding-left:6%;"><%= DispMsg %></p>
+            <% } %>
+            <br>
+            <br>
+            </div>
+    </div>
+
+    
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chaining jQuery Commands</title>
+    <!-- Include jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <style>
+        .box {
+            width: 100px;
+            height: 100px;
+            background-color: lightblue;
+            margin: 20px;
+            padding: 20px;
+            text-align: center;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="box">Click me!</div>
+
+<script>
+    // Chaining multiple jQuery commands
+    $(document).ready(function () {
+        $(".box")
+            .css("color", "red")    // Change text color to red
+            .slideUp(2000)          // Slide up with a duration of 2 seconds
+            .slideDown(2000);       // Slide down with a duration of 2 seconds
+    });
+</script>
+
+</body>
+</html>

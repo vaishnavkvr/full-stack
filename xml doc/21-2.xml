@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <!-- Define the student type -->
+  <xs:complexType name="studentType">
+    <xs:sequence>
+      <xs:element name="student_id" type="xs:string"/>
+      <xs:element name="name" type="xs:string"/>
+      <xs:element name="dob" type="xs:date"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <!-- Define the course type -->
+  <xs:complexType name="courseType">
+    <xs:sequence>
+      <xs:element name="course_id" type="xs:string"/>
+      <xs:element name="course_name" type="xs:string"/>
+      <xs:element name="instructor" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <!-- Define the placement type -->
+  <xs:complexType name="placementType">
+    <xs:sequence>
+      <xs:element name="company" type="xs:string"/>
+      <xs:element name="position" type="xs:string"/>
+      <xs:element name="placement_year" type="xs:gYear"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <!-- Define the program type -->
+  <xs:complexType name="programType">
+    <xs:sequence>
+      <xs:element name="program_name" type="xs:string"/>
+      <xs:element name="university" type="xs:string"/>
+      <xs:element name="admission_year" type="xs:gYear"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <!-- Define the activity type -->
+  <xs:complexType name="activityType">
+    <xs:sequence>
+      <xs:element name="name" type="xs:string"/>
+      <xs:element name="position" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <!-- Define the university type -->
+  <xs:element name="university">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="students" type="studentType" maxOccurs="unbounded"/>
+        <xs:element name="academics" type="courseType" maxOccurs="unbounded"/>
+        <xs:element name="placements" type="placementType" maxOccurs="unbounded"/>
+        <xs:element name="higher_studies" type="programType"/>
+        <xs:element name="extra_curriculars" type="activityType" maxOccurs="unbounded"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+</xs:schema>
